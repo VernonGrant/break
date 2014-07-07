@@ -1,0 +1,19 @@
+{
+  "name": "break",
+  "author": {
+      "name": "Joel Kuntz",
+      "email": "joel.kuntz.92@gmail.com",
+      "url": "https://github.com/Frozenfire92/"
+  },
+  "main": "./lib/break",
+  "version": "0.1.0",
+  "description": "A reminder to take a break;",
+  "activationEvents": ["break:toggle"],
+  "repository": "https://github.com/Frozenfire92/break",
+  "license": "unlicense",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

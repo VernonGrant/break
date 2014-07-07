@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable break': 'break:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'break'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'break:toggle' }
+      ]
+    ]
+  }
+]

@@ -6,7 +6,7 @@ module.exports =
   breakInterval: 300000 # 5 minute default
   breakLength: 60000 # 1 minute defualt
 
-  activate: (state) ->
+  activate: (@state) ->
     # Start Timer
     @timer()
 
@@ -21,7 +21,7 @@ module.exports =
     # Start interval countdown
 
     # Activate break view
-    @breakView = new BreakView(state.breakViewState)
+    @breakView = new BreakView(@state.breakViewState)
 
     # Start break countdown
       # Get random quote
@@ -31,4 +31,4 @@ module.exports =
     @deactivate()
 
     # Restart
-    @timer()
+    #@timer()

@@ -6,7 +6,7 @@ module.exports =
 
   configDefaults:
     # In miliseconds
-    breakInterval: 5*60 # 5 minute default
+    breakInterval: 10*60 # 10 minute default
     breakLength: 60 # 1 minute default
     snoozeLength: 60 # 1 minute default
 
@@ -42,11 +42,9 @@ module.exports =
       delete @_scheduledBreak
     # Start break countdown
     interval = 1000 * atom.config.get 'break.breakInterval'
-    console.log interval
+    # console.log interval
     @_scheduledBreak = @timer.after interval, () =>
-      console.log "BREAK TIME"
-      # TODO: Get random quote
-      # TODO: Update progress bar
+      # console.log "BREAK TIME"
       @breakView.show()
       # Schedule
       do @scheduleBreakEnd
@@ -58,9 +56,9 @@ module.exports =
       delete @_scheduledBreakEnd
     # Start break countdown
     duration = 1000 * atom.config.get 'break.breakLength'
-    console.log duration
+    # console.log duration
     @_scheduledBreakEnd = @timer.after duration, () =>
-      console.log "END BREAK TIME"
+      # console.log "END BREAK TIME"
       @breakView.hide()
       # Reschedule
       do @scheduleBreak

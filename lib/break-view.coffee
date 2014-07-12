@@ -17,7 +17,7 @@ class BreakView extends View
         @div class: "panel-body padded", =>
           # Quote
           @p
-            class: 'text-center text-highlight'
+            class: 'break-quote text-center text-highlight'
             outlet: 'quote'
             ''
           # Progress Bar

@@ -5,7 +5,7 @@
 > An [Atom]() package to remind you to get up, move around, and take a break.  
 > Inspired by [Workrave](http://www.workrave.org/), [countless articles](https://www.google.ca/#q=sitting+harmful), and my sore hips.
 
-![A screenshot of your spankin' package](screenshot.png)
+![A screenshot of your spankin' package](https://github.com/Frozenfire92/break/raw/master/screenshot.png)
 
 -----
 
@@ -14,14 +14,14 @@
 Atom Package: https://atom.io/packages/break
 
 ```bash
-apm install gitter
+apm install break
 ```
 
 Or Settings/Preferences ➔ Packages ➔ Search for `break`
 
 ## Features
 
-- [x] Customizable `Break` schedule (see *Package Settings* below)
+- [x] Customizable `Break` schedule (see [Package Settings](https://github.com/Frozenfire92/break#package-settings) below)
 - [x] Full screen break message that prevents you from further coding
 - [ ] [Warns you before a break so that you can save and prepare](https://github.com/Frozenfire92/break/issues/1)
 

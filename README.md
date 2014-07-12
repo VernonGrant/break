@@ -29,7 +29,7 @@ Or Settings/Preferences ➔ Packages ➔ Search for `break`
 
 - `breakInterval`:
     Period between breaks, in seconds.
-    Default is 5 minutes (5*60 seconds)
+    Default is 15 minutes (15*60 seconds)
 - `breakLength`:
     Duration of the break, in seconds.
     Default is 1 minute (60 seconds)

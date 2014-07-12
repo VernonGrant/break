@@ -6,7 +6,7 @@ module.exports =
 
   configDefaults:
     # In miliseconds
-    breakInterval: 10*60 # 10 minute default
+    breakInterval: 15*60 # 15 minute default
     breakLength: 60 # 1 minute default
     snoozeLength: 60 # 1 minute default
 

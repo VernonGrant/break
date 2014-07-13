@@ -6,27 +6,25 @@ class BreakView extends View
     # The full screen overlay
     @div class: 'overlay from-top floating break', =>
       # Panel in the center
-      @div class: "panel bordered vertical-center", =>
-        @div class: "panel-heading text-center", =>
-          @h4
-            class: 'actual-heading',
-            =>
-              @span 'Time to take a '
-              @span class: 'text-danger', "break;"
+      @div class: "vertical-center text-center", =>
+        @h4
+          class: 'actual-heading',
+          =>
+            @span 'Time to take a '
+            @span class: 'text-danger', "break;"
 
-        @div class: "panel-body padded", =>
-          # Quote
-          @p
-            class: 'break-quote text-center text-highlight'
-            outlet: 'quote'
-            ''
-          # Progress Bar
-          @div class: 'block', =>
-            @progress
-              class: 'inline-block widen'
-              max: '100'
-              value: '0'
-              outlet: 'progress'
+        # Quote
+        @p
+          class: 'break-quote text-center text-highlight'
+          outlet: 'quote'
+          ''
+        # Progress Bar
+        @div class: 'block', =>
+          @progress
+            class: 'inline-block widen'
+            max: '100'
+            value: '0'
+            outlet: 'progress'
 
   initialize: (@break, @timer) ->
     atom.workspaceView.command "break:toggle", => @toggle()
@@ -42,7 +40,7 @@ class BreakView extends View
     total = (+endDate - +startDate)
     elapse = (+currDate - +startDate)
     percentage = (elapse / total)*100
-    console.log currDate, startDate, endDate, total, elapse, percentage
+    #console.log currDate, startDate, endDate, total, elapse, percentage
     @progress.val percentage
 
   # Returns an object that can be retrieved when package is activated
@@ -58,8 +56,7 @@ class BreakView extends View
     @quote.text @generateQuote()
 
   generateQuote: ->
-    "Whatever the mind of man can conceive and believe, it can achieve.
-    – Napoleon Hill"
+    "Whatever the mind of man can conceive and believe, it can achieve – Napoleon Hill"
 
   show: ->
     if not @hasParent()
@@ -74,7 +71,7 @@ class BreakView extends View
     @hasParent()
 
   toggle: ->
-    console.log "BreakView was toggled!"
+    #console.log "BreakView was toggled!"
     if @isShowing()
       @hide()
     else

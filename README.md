@@ -1,35 +1,39 @@
-# [break;](https://github.com/Frozenfire92/break)
+# [break;](https://atom.io/packages/break)
 
 [![Gitter chat](https://badges.gitter.im/Frozenfire92/break.png)](https://gitter.im/Frozenfire92/break)
 
-> An [Atom]() package to remind you to get up, move around, and take a break.  
-> Inspired by [Workrave](http://www.workrave.org/), [countless articles](https://www.google.ca/#q=sitting+harmful), and my sore hips.
+> An [Atom](https://atom.io/) package to remind you to [get up](https://www.youtube.com/watch?v=X2W3aG8uizA), move around, and take a break. Inspired by [Workrave](http://www.workrave.org/), [countless articles](https://www.google.ca/#q=sitting+harmful), and my sore hips.
 
-![A screenshot of your spankin' package](https://github.com/Frozenfire92/break/raw/master/screenshot.png)
+![break screenshot](https://github.com/Frozenfire92/break/raw/master/screenshot.png)
 
 -----
 
+
 ## Install
 
-Atom Package: https://atom.io/packages/break
-
+Command Line
 ```bash
 apm install break
 ```
 
-Or Settings/Preferences ➔ Packages ➔ Search for `break`
+Or through atom
+```
+Command Palette ➔ Settings View: Install Packages ➔ Break
+```
+
 
 ## Features
 
-- [x] Customizable `Break` schedule (see [Package Settings](https://github.com/Frozenfire92/break#package-settings) below)
+- [x] Customizable break schedule
 - [x] Full screen break message that prevents you from further coding
 - [ ] [Warns you before a break so that you can save and prepare](https://github.com/Frozenfire92/break/issues/1)
 
+
 ## Package Settings
 
-- `breakInterval`:
-    Period between breaks, in seconds.
-    Default is 15 minutes (15*60 seconds)
-- `breakLength`:
-    Duration of the break, in seconds.
-    Default is 1 minute (60 seconds)
+- `breakIntervalInSeconds`:
+    Period between breaks.
+    Default is 5 minutes
+- `breakLengthInSeconds`:
+    Duration of the break.
+    Default is 30 seconds

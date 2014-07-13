@@ -1,10 +1,14 @@
 {
   "name": "break",
-  "author": {
+  "authors": [{
       "name": "Joel Kuntz",
       "email": "joel.kuntz.92@gmail.com",
       "url": "https://github.com/Frozenfire92/"
-  },
+  },{
+      "name": "Glavin Wiechert",
+      "email": "",
+      "url": "https://github.com/Glavin001/"
+  }],
   "main": "./lib/break",
   "version": "0.1.0",
   "description": "A reminder to take a break;",

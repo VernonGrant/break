@@ -5,10 +5,8 @@ Timer = require './timer'
 module.exports =
 
   configDefaults:
-    # In miliseconds
-    breakInterval: 15*60 # 15 minute default
-    breakLength: 60 # 1 minute default
-    snoozeLength: 60 # 1 minute default
+    breakIntervalInSeconds: 5*60
+    breakLengthInSeconds: 30
 
   # Views
   breakView: null
@@ -41,7 +39,7 @@ module.exports =
       @_scheduledBreak.cancel()
       delete @_scheduledBreak
     # Start break countdown
-    interval = 1000 * atom.config.get 'break.breakInterval'
+    interval = 1000 * atom.config.get 'break.breakIntervalInSeconds'
     # console.log interval
     @_scheduledBreak = @timer.after interval, () =>
       # console.log "BREAK TIME"
@@ -55,7 +53,7 @@ module.exports =
       @_scheduledBreakEnd.cancel()
       delete @_scheduledBreakEnd
     # Start break countdown
-    duration = 1000 * atom.config.get 'break.breakLength'
+    duration = 1000 * atom.config.get 'break.breakLengthInSeconds'
     # console.log duration
     @_scheduledBreakEnd = @timer.after duration, () =>
       # console.log "END BREAK TIME"

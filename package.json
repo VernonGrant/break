@@ -1,22 +1,24 @@
 {
   "name": "break",
-  "authors": [{
+  "authors": [
+    {
       "name": "Joel Kuntz",
       "email": "joel.kuntz.92@gmail.com",
       "url": "https://github.com/Frozenfire92/"
-  },{
+    },
+    {
       "name": "Glavin Wiechert",
       "email": "",
       "url": "https://github.com/Glavin001/"
-  }],
+    }
+  ],
   "main": "./lib/break",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A reminder to take a break;",
   "repository": "https://github.com/Frozenfire92/break",
   "license": "unlicense",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -1,4 +1,5 @@
 EventEmitter = require('events').EventEmitter
+StatusMessage = require './status-message'
 
 module.exports =
   class Timer extends EventEmitter
@@ -9,6 +10,22 @@ module.exports =
     _endTime: null
     _timer: null
     interval: 1000 # 1 Seconds
+    _timeRemaining: 0
+    _message: null
+
+    setStatusTime: (time) ->
+      @_timeRemaining = time
+
+    updateStatusBar: () ->
+      @_timeRemaining = @_timeRemaining - 1
+      @displayMessage('<span class=\"icon icon-steps\"></span>' + @_timeRemaining + 's')
+
+    # Display a message, creates one if it doesn't already exist
+    displayMessage: (message) ->
+      if @_message?
+        @_message.setText(message)
+      else
+        @_message = new StatusMessage(message)
 
     start: =>
       @cancel() # Cancel any previous/currently running
@@ -27,8 +44,10 @@ module.exports =
     tick: =>
       if @_isRunning
         @emit "tick"
+        @updateStatusBar()
         # Setup next tick
         @_timer = setTimeout @tick, @interval
+
 
     after: (delay = 1000, listener = ->) ->
       type = 'tick'
@@ -37,6 +56,8 @@ module.exports =
         afterDate = +delay
       else
         afterDate = +new Date(startDate + delay)
+
+
       # Listener Wrapper
       g = ->
         currDate = +(new Date())

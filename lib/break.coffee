@@ -40,6 +40,8 @@ module.exports =
       delete @_scheduledBreak
     # Start break countdown
     interval = 1000 * atom.config.get 'break.breakIntervalInSeconds'
+    # Set countdown for status bar
+    @timer.setStatusTime(interval / 1000)
     # console.log interval
     @_scheduledBreak = @timer.after interval, () =>
       # console.log "BREAK TIME"

@@ -12,13 +12,15 @@ module.exports =
     interval: 1000 # 1 Seconds
     _timeRemaining: 0
     _message: null
+    _microCount: null
 
-    setStatusTime: (time) ->
+    setStatusBar: (time, count) ->
       @_timeRemaining = time
+      @_microCount = count
 
     updateStatusBar: () ->
       @_timeRemaining = @_timeRemaining - 1
-      @displayMessage('<span class=\"icon icon-steps\"></span>' + @_timeRemaining + 's')
+      @displayMessage('<span class=\"icon icon-steps\"></span>' + @_microCount + ' / ' + @_timeRemaining + 's')
 
     # Display a message, creates one if it doesn't already exist
     displayMessage: (message) ->

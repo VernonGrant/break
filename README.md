@@ -26,7 +26,7 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
 
 - [x] Customizable micro and macro break schedule. Micro are shorter breaks that occur more often. Macro are longer that occur less.
 - [x] Full screen break message that prevents you from further coding
-- [ ] [Warns you before a break so that you can save and prepare](https://github.com/Frozenfire92/break/issues/1)
+- [ ] [Warns you before a break so that you can save and prepare](https://github.com/Frozenfire92/break/issues/5)
 - [x] Displays the current micro break count and time to next break in status bar. ![Status Bar Screenshot](https://github.com/Frozenfire92/break/raw/master/screenshot1.png)
 
 

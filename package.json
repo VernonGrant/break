@@ -13,7 +13,7 @@
     }
   ],
   "main": "./lib/break",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A reminder to take a break;",
   "repository": "https://github.com/Frozenfire92/break",
   "license": "unlicense",

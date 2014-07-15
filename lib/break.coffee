@@ -54,7 +54,7 @@ module.exports =
     breakCount = atom.config.get 'break.macroBreakIntervalInMicroAmount'
     if @currentMicroCount >= breakCount
       duration = 1000 * atom.config.get 'break.macroBreakLengthInSeconds'
-      @currentMicroCount = 0
+      @currentMicroCount = -1
     else
       duration = 1000 * atom.config.get 'break.microBreakLengthInSeconds'
     # console.log duration

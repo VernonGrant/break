@@ -44,3 +44,12 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
 - `Micro Break Length In Seconds`:
     Duration of the micro break.
     Default is 15 seconds
+
+#### Settings Example
+```
+break:
+  macroBreakIntervalInMicroAmount: 8
+  macroBreakLengthInSeconds: 300
+  microBreakIntervalInSeconds: 300
+  microBreakLengthInSeconds: 15
+```

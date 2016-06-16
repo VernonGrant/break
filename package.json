@@ -14,7 +14,12 @@
       "name": "Glavin Wiechert",
       "email": "",
       "url": "https://github.com/Glavin001/"
-    }
+    },
+    {
+      "name": "Vernon Grant",
+      "email": "vernongrantt@gmail.com",
+      "url": "https://github.com/VernonGrant"
+    },
   ],
   "license": "unlicense",
   "engines": {

@@ -1,5 +1,9 @@
 {
   "name": "break",
+  "main": "./lib/break",
+  "version": "0.3.1",
+  "description": "A reminder to take a break;",
+  "repository": "https://github.com/Frozenfire92/break",
   "authors": [
     {
       "name": "Joel Kuntz",
@@ -10,15 +14,24 @@
       "name": "Glavin Wiechert",
       "email": "",
       "url": "https://github.com/Glavin001/"
+    },
+    {
+      "name": "Vernon Grant",
+      "email": "vernongrantt@gmail.com",
+      "url": "https://github.com/VernonGrant"
     }
   ],
-  "main": "./lib/break",
-  "version": "0.3.1",
-  "description": "A reminder to take a break;",
-  "repository": "https://github.com/Frozenfire92/break",
   "license": "unlicense",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    }
+  }
 }

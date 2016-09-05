@@ -1,67 +1,165 @@
-BreakView = require './break-view'
+BreakHelpers = require './break-helpers'
+BreakTrigger = require './break-trigger'
+BreakTemplates = require './break-templates'
 Timer = require './timer'
 
 module.exports =
 
-  configDefaults:
-    microBreakIntervalInSeconds: 5*60
-    microBreakLengthInSeconds: 15
-    macroBreakIntervalInMicroAmount: 8
-    macroBreakLengthInSeconds: 5*60
-
-  # Views
-  breakView: null
-  currentMicroCount: null
+  # Config Schema
+  config:
+    macroBreakIntervalInMicroAmount:
+      type: 'integer'
+      default: 8
+      minimum: 1
+    macroBreakLengthInSeconds:
+      type: 'integer'
+      default: 300
+      minimum: 1
+      maximum: 86400
+    microBreakIntervalInSeconds:
+      type: 'integer'
+      default: 300
+      minimum: 5
+      maximum: 86400
+    microBreakLengthInSeconds:
+      type: 'integer'
+      default: 15
+      minimum: 5
+      maximum: 86400
 
   activate: (@state) ->
-    # Create break view
-    @timer = new Timer 1000
-    @breakView = new BreakView @, @timer
-    @currentMicroCount = 0
 
-    # Start interval countdown
-    @timer.start()
-    @scheduleBreak()
+    # Counters
+    @microBreakCounter = 0
+
+    # Config data holders
+    @microBreakInterval =
+      atom.config.get('break.microBreakIntervalInSeconds')
+    @microBreakLength =
+      atom.config.get('break.microBreakLengthInSeconds')
+    @macroBreakInterval =
+     atom.config.get('break.macroBreakIntervalInMicroAmount')
+    @macroBreakLength =
+     atom.config.get('break.macroBreakLengthInSeconds')
+
+    # Break trigger & Timer objects
+    @Timer = new Timer(@everySecond, @, true)
+
+    @microBreakTrigger = new BreakTrigger(
+      @microBreakInterval,
+      @microBreakLength,
+      @_microBreakStarts,
+      @_microBreakEnds,
+      @)
+
+    @macroBreakTrigger = new BreakTrigger(
+      @microBreakInterval,
+      @macroBreakLength,
+      @_macroBreakStarts,
+      @_macroBreakEnded,
+      @)
+
+    @macroBreakTrigger.stop(false)
+
+    # Break panel
+    breakPanelItem = BreakHelpers.createElement(
+      BreakTemplates.breakPanel,
+      'break-panel')
+
+    @breakPanel = atom.workspace.addModalPanel(
+      item: breakPanelItem,
+      visible: false,
+      priority: 100)
+
+  consumeStatusBar: (statusBar) ->
+    intervalItem = BreakHelpers.createElement(
+      BreakTemplates.statusBarInterval,
+      'inline-block')
+
+    @intervalTile = statusBar.addRightTile(item: intervalItem, priority: 0)
+
+  # Called every second by the timer
+  everySecond: (timer, object) ->
+    if object.microBreakTrigger.running
+      object.microBreakTrigger.watch()
+
+      object._updateIntervalTile(
+        object.microBreakTrigger.counter,
+        object.microBreakInterval)
+
+      object._updateBreakProgress(
+        object.microBreakTrigger._breakDurationCounter,
+        object.microBreakLength)
+
+    if object._isTimeForMacroBreak()
+      object.macroBreakTrigger.start()
+      object.macroBreakTrigger.watch()
+
+      object._updateIntervalTile(
+        object.macroBreakTrigger.counter,
+        object.microBreakInterval)
+
+      object._updateBreakProgress(
+        object.macroBreakTrigger._breakDurationCounter,
+        object.macroBreakLength)
+
+  # restart
+  restart: ->
+    @microBreakCounter = 0
+    @Timer.stop()
+    @Timer.start()
+    @microBreakTrigger.start()
+
+  # macro break starts
+  _macroBreakStarts: (object) ->
+    object._updateBreakQuote()
+    object.breakPanel.show()
+
+  # macro break ends
+  _macroBreakEnded: (object) ->
+    object.restart()
+    object.breakPanel.hide()
+
+  # micro break starts
+  _microBreakStarts: (object) ->
+    object._updateBreakQuote()
+    object.breakPanel.show()
+
+  # micro break ends
+  _microBreakEnds: (object) ->
+    object.microBreakCounter += 1
+
+    if object._isTimeForMacroBreak() isnt true
+      object.microBreakTrigger.start()
+
+    if object._isTimeForMacroBreak()
+      object.macroBreakTrigger.start()
+
+    object.breakPanel.hide()
+
+  _isTimeForMacroBreak: ->
+    @microBreakCounter is @macroBreakInterval
+
+  # updates the status bar tile
+  _updateIntervalTile: (counter, interval) ->
+    item = document.getElementById('break-interval-timer')
+    if item isnt null
+      time = BreakHelpers.secoundsToTime(interval - counter)
+      item.innerHTML = @microBreakCounter + ' | ' + time
+
+  # updates the break panels progress bar
+  _updateBreakProgress: (counter, breakLength) ->
+    item = document.getElementById('break-progress')
+    if item isnt null
+      item.value = Math.round((counter / breakLength) * 100)
+
+  # updates the break panels quote with a random one
+  _updateBreakQuote: ->
+    item = document.getElementById('break-quote')
+    if item isnt null
+      item.innerHTML = BreakHelpers.getRandomQuote()
 
   deactivate: ->
-    @breakView?.destroy()
+    @Timer.stop()
 
   serialize: ->
-    breakViewState: @breakView.serialize()
-
-  scheduleBreak: ->
-    # Cancel any previously scheduled break
-    if @_scheduledBreak?
-      @_scheduledBreak.cancel()
-      delete @_scheduledBreak
-    # Start break countdown
-    interval = 1000 * atom.config.get 'break.microBreakIntervalInSeconds'
-    # Set countdown for status bar
-    @timer.setStatusBar(interval / 1000, @currentMicroCount)
-    # console.log interval
-    @_scheduledBreak = @timer.after interval, () =>
-      # console.log "BREAK TIME"
-      @breakView.show()
-      # Schedule
-      do @scheduleBreakEnd
-
-  scheduleBreakEnd: ->
-    # Cancel any previously scheduled break end
-    if @_scheduledBreakEnd?
-      @_scheduledBreakEnd.cancel()
-      delete @_scheduledBreakEnd
-    # Start break countdown
-    breakCount = atom.config.get 'break.macroBreakIntervalInMicroAmount'
-    if @currentMicroCount >= breakCount
-      duration = 1000 * atom.config.get 'break.macroBreakLengthInSeconds'
-      @currentMicroCount = -1
-    else
-      duration = 1000 * atom.config.get 'break.microBreakLengthInSeconds'
-    # console.log duration
-    @_scheduledBreakEnd = @timer.after duration, () =>
-      # console.log "END BREAK TIME"
-      @breakView.hide()
-      # Increment micro count
-      @currentMicroCount++
-      # Reschedule
-      do @scheduleBreak

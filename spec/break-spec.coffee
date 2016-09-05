@@ -1,30 +1,17 @@
-{WorkspaceView} = require 'atom'
 Break = require '../lib/break'
-
-# Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
-#
-# To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
-# or `fdescribe`). Remove the `f` to unfocus the block.
+packageName = 'break'
 
 describe "Break", ->
-  activationPromise = null
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView
-    activationPromise = atom.packages.activatePackage('break')
+    waitsForPromise ->
+      atom.packages.activatePackage(packageName)
 
-  describe "when the break:toggle event is triggered", ->
-    it "attaches and then detaches the view", ->
-      expect(atom.workspaceView.find('.break')).not.toExist()
+  # Testing if the package is infact activated loaded
+  describe "Is successfully activated, loaded", ->
 
-      # This is an activation event, triggering it will cause the package to be
-      # activated.
-      atom.workspaceView.trigger 'break:toggle'
+    it "is activated", ->
+      expect(atom.packages.isPackageActive(packageName)).toBe(true)
 
-      waitsForPromise ->
-        activationPromise
-
-      runs ->
-        expect(atom.workspaceView.find('.break')).toExist()
-        atom.workspaceView.trigger 'break:toggle'
-        expect(atom.workspaceView.find('.break')).not.toExist()
+    it "is loaded", ->
+      expect(atom.packages.isPackageLoaded(packageName)).toBe(true)

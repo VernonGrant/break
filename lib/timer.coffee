@@ -1,81 +1,40 @@
-EventEmitter = require('events').EventEmitter
-StatusMessage = require './status-message'
-
 module.exports =
-  class Timer extends EventEmitter
-    constructor: (@interval = 1000)->
+  class Timer
 
-    _isRunning: false
-    _startTime: null
-    _endTime: null
-    _timer: null
-    interval: 1000 # 1 Seconds
-    _timeRemaining: 0
-    _message: null
-    _microCount: null
+    ###
+    A callback get called every second, the current instance and an aditional
+    object or value gets passed to the callback.
+    ###
+    constructor: (@callback, @object = null, @autoStart = false) ->
+      @running = false
+      @interval = 1000
+      @secondCounter = 0
+      @intervalId = null
 
-    setStatusBar: (time, count) ->
-      @_timeRemaining = time
-      @_microCount = count
+      if @autoStart
+        @_startInterval()
 
-    updateStatusBar: () ->
-      @_timeRemaining = @_timeRemaining - 1
-      @displayMessage('<span class=\"icon icon-steps\"></span>' + @_microCount + ' / ' + @_timeRemaining + 's')
+    start: ->
+      @_startInterval()
 
-    # Display a message, creates one if it doesn't already exist
-    displayMessage: (message) ->
-      if @_message?
-        @_message.setText(message)
+    stop: ->
+      clearInterval(@intervalId)
+      @running = false
+      @secondCounter = 0
+
+    incrementSeconds: ->
+      @secondCounter += 1
+
+    isSecondsEqualTo: (seconds) ->
+      if @secondCounter == seconds
+        true
       else
-        @_message = new StatusMessage(message)
+        false
 
-    start: =>
-      @cancel() # Cancel any previous/currently running
-      @_isRunning = true
-      @_timer = setTimeout @tick, @interval
-      @_startTime = new Date()
+    _startInterval: ->
+      @running = true
+      @intervalId = setInterval(@_onInterval, @interval, @, @object)
 
-    stop: =>
-      @_isRunning = false
-      clearTimeout @_timer
-      @_endTime = new Date()
-
-    cancel: =>
-      @stop()
-
-    tick: =>
-      if @_isRunning
-        @emit "tick"
-        @updateStatusBar()
-        # Setup next tick
-        @_timer = setTimeout @tick, @interval
-
-
-    after: (delay = 1000, listener = ->) ->
-      type = 'tick'
-      startDate = +new Date()
-      if delay instanceof Date
-        afterDate = +delay
-      else
-        afterDate = +new Date(startDate + delay)
-
-
-      # Listener Wrapper
-      g = ->
-        currDate = +(new Date())
-        if currDate >= afterDate
-          self.removeListener type, g
-          listener.apply this, arguments
-          return
-      if "function" isnt typeof listener
-        throw new Error(".once only takes instances of Function")
-      self = this
-      g.listener = listener
-      self.on type, g
-      return {
-        "cancel": () =>
-          @removeListener type, g
-        "listener": g
-        "endDate": new Date(afterDate)
-        "startDate": new Date(startDate)
-        }
+    _onInterval: (self, object) ->
+      self.incrementSeconds()
+      self.callback(self, object)

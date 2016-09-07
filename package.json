@@ -1,7 +1,7 @@
 {
   "name": "break",
   "main": "./lib/break",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "A reminder to take a break;",
   "repository": "https://github.com/Frozenfire92/break",
   "authors": [
@@ -25,8 +25,7 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "consumedServices": {
     "status-bar": {
       "versions": {

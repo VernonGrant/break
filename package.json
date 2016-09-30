@@ -1,9 +1,9 @@
 {
   "name": "break",
-  "main": "./lib/break",
+  "main": "./lib/main",
   "version": "1.0.0",
   "description": "A reminder to take a break;",
-  "repository": "https://github.com/Frozenfire92/break",
+  "repository": "https://github.com/VernonGrant/break",
   "authors": [
     {
       "name": "Joel Kuntz",
@@ -17,15 +17,17 @@
     },
     {
       "name": "Vernon Grant",
-      "email": "vernongrantt@gmail.com",
+      "email": "vernon-grant@outlook.com",
       "url": "https://github.com/VernonGrant"
     }
   ],
-  "license": "unlicense",
+  "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+      "node-notifier": "^4.6.1"
+  },
   "consumedServices": {
     "status-bar": {
       "versions": {

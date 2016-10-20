@@ -1,9 +1,11 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
 @import "ui-variables";
 
-#break-panel {
-  padding: 10px 20px;
 
+#break-panel {
+    width: 100%;
+    max-width: 650px;
+    margin: 50px auto;
   .actual-heading {
       font-size: 3em;
   }
@@ -23,4 +25,11 @@
 
 #break-interval-timer{
   padding: 0 5px;
+}
+
+#break-cover-window{
+    // position: absolute;
+    // z-index: 99999;
+    // width: 100%;
+    // background: fade(@app-background-color,85%);
 }

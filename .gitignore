@@ -1,4 +1,5 @@
 .DS_Store
+.projectile
 npm-debug.log
 node_modules
 pseudo-code/

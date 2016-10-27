@@ -25,7 +25,7 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
 
 - [x] Customizable micro and macro break schedule. Micro are shorter breaks that occur more often. Macro are longer breaks that occur less.
 - [x] Full screen break message that prevents you from further coding.
-- [x] Optional notifications 30s before each break starts.
+- [x] Optional notifications 1 minute before each break starts.
 - [x] Displays the current micro break count and remaining break time in the status bar. ![Status Bar Screenshot](https://github.com/Frozenfire92/break/raw/master/screenshot1.png)
 
 ## Package Settings
@@ -34,14 +34,14 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
   Enable the micro break functionality
 - **Macro Break Configuration**
   - *Enable Notifications* - boolean :
-  Get a notification 30 seconds before each macro break
+  Get a notification 1 minute before each macro break
   - *Duration* - integer :
   Duration in minites of each macro break
   - *Interval* - integer :
   Time in minites between each macro break
 - **Micro Break Configuration**
   - *Enable Notifications* - boolean :
-  Get a notification 30 seconds before each micro break
+  Get a notification 1 minute before each micro break
   - *Duration* - integer :
   Duration in minites of each micro break
   - *Interval* - integer :

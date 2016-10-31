@@ -26,6 +26,7 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
 - [x] Customizable micro and macro break schedule. Micro are shorter breaks that occur more often. Macro are longer breaks that occur less.
 - [x] Full screen break message that prevents you from further coding.
 - [x] Optional notifications 1 minute before each break starts.
+- [x] Syncs breaks across multiple atom windows.
 - [x] Displays the current micro break count and remaining break time in the status bar. ![Status Bar Screenshot](https://github.com/Frozenfire92/break/raw/master/screenshot1.png)
 
 ## Package Settings

@@ -1,7 +1,7 @@
 {
   "name": "break",
   "main": "./lib/main",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A reminder to take a break;",
   "repository": "https://github.com/VernonGrant/break",
   "authors": [

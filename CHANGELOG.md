@@ -1,3 +1,9 @@
+## 2.0.0
+* OS notifications are now implemented into break.
+* Breaks are now synced across all Atom windows.
+* When a user makes changes to the package settings it will reset the break session.
+* Micro breaks can now be disabled.
+
 ## 1.0.0
 * Got break up-to-date with the latest version of atom and the atom api.
 

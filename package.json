@@ -1,9 +1,9 @@
 {
   "name": "break",
-  "main": "./lib/break",
-  "version": "1.0.0",
+  "main": "./lib/main",
+  "version": "2.0.0",
   "description": "A reminder to take a break;",
-  "repository": "https://github.com/Frozenfire92/break",
+  "repository": "https://github.com/VernonGrant/break",
   "authors": [
     {
       "name": "Joel Kuntz",
@@ -17,20 +17,31 @@
     },
     {
       "name": "Vernon Grant",
-      "email": "vernongrantt@gmail.com",
+      "email": "vernon-grant@outlook.com",
       "url": "https://github.com/VernonGrant"
     }
   ],
-  "license": "unlicense",
+  "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {},
+  "scripts": {
+    "build": "babel ./lib/src -d ./lib -w"
+  },
+  "dependencies": {
+    "node-notifier": "^4.6.1",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
+  },
   "consumedServices": {
     "status-bar": {
       "versions": {
         "^1.0.0": "consumeStatusBar"
       }
     }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0"
   }
 }

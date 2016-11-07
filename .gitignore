@@ -1,3 +1,9 @@
 .DS_Store
+.projectile
 npm-debug.log
 node_modules
+pseudo-code/
+lib_old/
+spec_old/
+keymaps_old/
+lib/

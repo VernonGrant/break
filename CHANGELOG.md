@@ -1,3 +1,9 @@
+## 2.0.2
+* Added an array of new quotes.
+
+## 2.0.1
+* Added information notification if Nodejs is not found.
+
 ## 2.0.0
 * OS notifications are now implemented into break.
 * Breaks are now synced across all Atom windows.

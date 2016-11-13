@@ -1,5 +1,6 @@
 ## 2.0.2
 * Added an array of new quotes.
+* Changed the way the external server process gets executed.
 
 ## 2.0.1
 * Added information notification if Nodejs is not found.

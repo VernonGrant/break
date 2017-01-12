@@ -37,16 +37,16 @@ Command Palette ➔ Settings View: Install Packages ➔ Break
   - *Enable Notifications* - boolean :
   Get a notification 1 minute before each macro break
   - *Duration* - integer :
-  Duration in minites of each macro break
+  Duration in minutes of each macro break
   - *Interval* - integer :
-  Time in minites between each macro break
+  Time in minutes between each macro break
 - **Micro Break Configuration**
   - *Enable Notifications* - boolean :
   Get a notification 1 minute before each micro break
   - *Duration* - integer :
-  Duration in minites of each micro break
+  Duration in minutes of each micro break
   - *Interval* - integer :
-  Time in minites between each micro break
+  Time in minutes between each micro break
   - *Amount* - integer :
   Amount of micro breaks before the macro break starts
 
